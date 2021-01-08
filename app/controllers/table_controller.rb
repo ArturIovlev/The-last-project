@@ -7,7 +7,7 @@ class TableController < ApplicationController
     @admin=true
   end
 
- ef view_one
+  def view_one
     @locale=params[:locale]
     @nik =params[:nik]
     del =params[:del]
@@ -118,7 +118,6 @@ class TableController < ApplicationController
     @id_thu=id_sat.sort_by{ |a| a.first.to_i }
   end
 
-
   def cached
     res= CachedResult.all.map{|inst| {name: inst.name, profession: inst.profession, day: inst.day, time: inst.time, cabinet: inst.cabinet}}
 
@@ -176,3 +175,4 @@ class TableController < ApplicationController
     end
   end
 end
+
