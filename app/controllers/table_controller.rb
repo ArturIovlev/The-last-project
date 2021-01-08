@@ -7,7 +7,7 @@ class TableController < ApplicationController
     @admin=true
   end
 
-  def view_one
+ ef view_one
     @locale=params[:locale]
     @nik =params[:nik]
     del =params[:del]
@@ -36,80 +36,6 @@ class TableController < ApplicationController
       cached_result.save!
     end
 
-    id_mon=[]
-    @id_mon=[]
-    CachedResult.all.each do |inst|
-      if inst.day == "Mon"
-        if input_day==nil
-          if Record.find_by(unique: inst.id).nil?
-            id_mon<<[inst.time,inst.name,inst.profession,inst.cabinet,inst.id]
-          else
-            id_mon<<[inst.time,inst.name,inst.profession,inst.cabinet,-1]
-          end
-        else
-          id_mon<<[inst.time,inst.name,inst.profession,inst.cabinet,-2,inst.id]
-        end
-      end
-    end
-    id_mon=id_mon.sort_by{ |a| a.first.to_i }
-    @id_mon=id_mon
-
-    id_tue=[]
-    @id_tue=[]
-    CachedResult.all.each do |inst|
-      if inst.day == "Tue"
-        if input_day==nil
-          if Record.find_by(unique: inst.id).nil?
-            id_tue<<[inst.time,inst.name,inst.profession,inst.cabinet,inst.id]
-          else
-            id_tue<<[inst.time,inst.name,inst.profession,inst.cabinet,-1]
-          end
-        else
-          id_tue<<[inst.time,inst.name,inst.profession,inst.cabinet,-2,inst.id]
-        end
-      end
-    end
-    id_tue=id_tue.sort_by{ |a| a.first.to_i }
-    @id_tue=id_tue
-
-    id_wed=[]
-    @id_wed=[]
-    CachedResult.all.each do |inst|
-      if inst.day == "Wed"
-        if input_day==nil
-          if Record.find_by(unique: inst.id).nil?
-            id_wed<<[inst.time,inst.name,inst.profession,inst.cabinet,inst.id]
-          else
-            id_wed<<[inst.time,inst.name,inst.profession,inst.cabinet,-1]
-          end
-        else
-          id_wed<<[inst.time,inst.name,inst.profession,inst.cabinet,-2,inst.id]
-        end
-      end
-    end
-    id_wed=id_wed.sort_by{ |a| a.first.to_i }
-    @id_wed=id_wed
-
-    id_thu=[]
-    @id_thu=[]
-    CachedResult.all.each do |inst|
-      if inst.day == "Thu"
-        if input_day==nil
-          if Record.find_by(unique: inst.id).nil?
-            id_thu<<[inst.time,inst.name,inst.profession,inst.cabinet,inst.id]
-          else
-            id_thu<<[inst.time,inst.name,inst.profession,inst.cabinet,-1]
-          end
-        else
-          id_thu<<[inst.time,inst.name,inst.profession,inst.cabinet,-2,inst.id]
-        end
-      end
-    end
-    id_thu=id_thu.sort_by{ |a| a.first.to_i }
-    @id_thu=id_thu
-
-    id_fri=[]
-    @id_fri=[]
     CachedResult.all.each do |inst|
       if inst.day == "Fri"
         if input_day==nil
@@ -122,13 +48,6 @@ class TableController < ApplicationController
           id_fri<<[inst.time,inst.name,inst.profession,inst.cabinet,-2,inst.id]
         end
       end
-    end
-    id_fri=id_fri.sort_by{ |a| a.first.to_i }
-    @id_fri=id_fri
-
-    id_sat=[]
-    @id_sat=[]
-    CachedResult.all.each do |inst|
       if inst.day == "Sat"
         if input_day==nil
           if Record.find_by(unique: inst.id).nil?
@@ -140,10 +59,65 @@ class TableController < ApplicationController
           id_sat<<[inst.time,inst.name,inst.profession,inst.cabinet,-2,inst.id]
         end
       end
+      if inst.day == "Mon"
+        if input_day==nil
+          if Record.find_by(unique: inst.id).nil?
+            id_mon<<[inst.time,inst.name,inst.profession,inst.cabinet,inst.id]
+          else
+            id_mon<<[inst.time,inst.name,inst.profession,inst.cabinet,-1]
+          end
+        else
+          id_mon<<[inst.time,inst.name,inst.profession,inst.cabinet,-2,inst.id]
+        end
+      end
+      if inst.day == "Tue"
+        if input_day==nil
+          if Record.find_by(unique: inst.id).nil?
+            id_tue<<[inst.time,inst.name,inst.profession,inst.cabinet,inst.id]
+          else
+            id_tue<<[inst.time,inst.name,inst.profession,inst.cabinet,-1]
+          end
+        else
+          id_tue<<[inst.time,inst.name,inst.profession,inst.cabinet,-2,inst.id]
+        end
+      end
+      if inst.day == "Wed"
+        if input_day==nil
+          if Record.find_by(unique: inst.id).nil?
+            id_wed<<[inst.time,inst.name,inst.profession,inst.cabinet,inst.id]
+          else
+            id_wed<<[inst.time,inst.name,inst.profession,inst.cabinet,-1]
+          end
+        else
+          id_wed<<[inst.time,inst.name,inst.profession,inst.cabinet,-2,inst.id]
+        end
+      end
+      if inst.day == "Thu"
+        if input_day==nil
+          if Record.find_by(unique: inst.id).nil?
+            id_thu<<[inst.time,inst.name,inst.profession,inst.cabinet,inst.id]
+          else
+            id_thu<<[inst.time,inst.name,inst.profession,inst.cabinet,-1]
+          end
+        else
+          id_thu<<[inst.time,inst.name,inst.profession,inst.cabinet,-2,inst.id]
+        end
+      end
     end
-    id_sat=id_sat.sort_by{ |a| a.first.to_i }
-    @id_sat=id_sat
+    @id_sat=[]
+    @id_thu=[]
+    @id_mon=[]
+    @id_fri=[]
+    @id_wed=[]
+    @id_thu=[]
+    @id_mon=id_mon.sort_by{ |a| a.first.to_i }
+    @id_wed=id_wed.sort_by{ |a| a.first.to_i }
+    @id_thu=id_thu.sort_by{ |a| a.first.to_i }
+    @id_tue=id_tue.sort_by{ |a| a.first.to_i }
+    @id_fri=id_fri.sort_by{ |a| a.first.to_i }
+    @id_thu=id_sat.sort_by{ |a| a.first.to_i }
   end
+
 
   def cached
     res= CachedResult.all.map{|inst| {name: inst.name, profession: inst.profession, day: inst.day, time: inst.time, cabinet: inst.cabinet}}
